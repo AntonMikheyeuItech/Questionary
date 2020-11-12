@@ -1,6 +1,6 @@
 import React from 'react';
 import { unstable_createRoot } from 'react-dom';
-
-const App = () => (<h1>Hello World!</h1>);
+import 'assets/kernel.styles.css';
+import App from 'App';
 
 unstable_createRoot(document.getElementById('root')).render(<App />);

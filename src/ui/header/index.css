@@ -1,0 +1,22 @@
+.header {
+    width: 100%;
+    height: 10%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: var(--grey);
+}
+
+.headre__logo {
+    background-image: url("https://itechart-by.s3.amazonaws.com/storage/static/svg/logo.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 150px;
+    height: 60%;
+}
+
+.header__buttons {
+    display: flex;
+}

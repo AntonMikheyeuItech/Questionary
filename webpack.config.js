@@ -1,8 +1,11 @@
+/* eslint-disable no-undef */
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { PORT = 3000 } = process.env;
 
 module.exports = {
+  entry: ['@babel/polyfill', './src/index.jsx'],
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
@@ -11,6 +14,11 @@ module.exports = {
     modules: [path.join(__dirname, 'src'), 'node_modules'],
     alias: {
       react: path.join(__dirname, 'node_modules', 'react'),
+      utils: path.join(__dirname, '/src/utils'),
+      ui: path.join(__dirname, '/src/ui'),
+      assets: path.join(__dirname, '/src/assets'),
+      api: path.join(__dirname, '/src/api'),
+      context: path.join(__dirname, '/src/context')
     },
     extensions: ['.js', '.jsx']
   },
@@ -38,7 +46,7 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'build'),
     compress: true,
-    port: 3000,
+    port: PORT,
     watchOptions: {
       poll: true
     },
