@@ -1,0 +1,9 @@
+[
+    {
+        "accessToken": "Anton/1234",
+        "login": "Anton",
+        "password": "1234",
+        "type": "ADMIN",
+        "email": "someemail@some.email"
+    }
+]
