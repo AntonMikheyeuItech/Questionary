@@ -9,6 +9,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
+    publicPath: '/'
   },
   resolve: {
     modules: [path.join(__dirname, 'src'), 'node_modules'],
@@ -35,16 +36,25 @@ module.exports = {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
+      {
+        test: /\.(png|jpe?g|gif|ico)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
     ],
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: './src/template/index.html',
+      template: './src/template/index.html'
     }),
     new MiniCssExtractPlugin({ filename: 'styles.css' })
   ],
   devServer: {
     contentBase: path.join(__dirname, 'build'),
+    historyApiFallback: true,
     compress: true,
     port: PORT,
     watchOptions: {
