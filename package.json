@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode=production",
+    "dev": "webpack --mode=development",
     "watch": "webpack --watch --mode=development",
     "start": "webpack serve --devtool=source-map",
     "lint": "eslint \"src/\" --ext .js,.jsx"

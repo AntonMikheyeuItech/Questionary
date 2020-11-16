@@ -1,0 +1,6 @@
+.login {
+  display: flex;
+  width: 50%;
+  min-width: 300px;
+  max-width: 400px;
+}

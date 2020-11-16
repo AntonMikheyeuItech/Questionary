@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/display-name */
 import React, { useEffect, Suspense } from 'react';
 import Header from 'ui/header';
 import Footer from 'ui/footer';
@@ -11,11 +13,8 @@ import {
     Route,
     Switch
 } from "react-router-dom";
-import { Cookie } from 'utils';
-import { ContextProvider, useGlobalContext } from 'context';
 
 const mainPart = Component => (
-    // eslint-disable-next-line react/display-name
     () => (
         <Suspense fallback={<Loader />}>
             <Header />
@@ -27,19 +26,18 @@ const mainPart = Component => (
     )
 );
 
-const App = () => {
-    const { getUserData, contextState: { user } } = useGlobalContext();
-    const { accessToken } = Cookie.getCookie("accessToken");
-    useEffect(() => accessToken && getUserData(), []);
+const App = ({ getUserDataAsync, userType, isAuthorized, isLoading }) => {
+
+    useEffect(() => isAuthorized && getUserDataAsync(), []);
 
     let Part;
 
-    if (!accessToken) {
+    if (!isAuthorized) {
         Part = mainPart(LoginPage); 
-    } else if (!user) {
+    } else if (isLoading && !userType) {
         Part = Loader;
     } else {
-        switch (user.type) {
+        switch (userType) {
             case "ADMIN":
                 Part = mainPart(AdminPart);
                 break;
@@ -59,5 +57,11 @@ const App = () => {
     );
 };
 
-// eslint-disable-next-line react/display-name
-export default () => (<ContextProvider><App /></ContextProvider>);
+export default React.memo(App, (prevProps, nextProps) => {
+    if (
+        prevProps.userType === nextProps.userType
+        && prevProps.isAuthorized === nextProps.isAuthorized
+    ) return true;
+
+    return false;
+});
