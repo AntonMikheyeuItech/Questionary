@@ -1,0 +1,10 @@
+.button {
+  background-color: #ffffff;
+  border: 1px solid;
+  color: #000000;
+  min-width: 100px;
+}
+
+.button:hover {
+  border: 2px solid var(--red);
+}

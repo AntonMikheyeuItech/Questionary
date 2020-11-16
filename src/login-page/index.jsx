@@ -3,17 +3,19 @@ import {
     Switch,
     Route,
     Redirect
-} from "react-router-dom";
+} from 'react-router-dom';
+import LogIn from './login';
+import Register from './register';
 
 const LoginPage = () => {
 
     return (
         <Switch>
             <Route exact path="/login">
-                <h1>I am login page</h1>
+                <LogIn />
             </Route>
             <Route exact path="/register">
-                <h1>I am register page</h1>
+                <Register />
             </Route>
             <Route exact path="/">
                 <Redirect to="/login" />
